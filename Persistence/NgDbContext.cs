@@ -1,4 +1,5 @@
 using System;
+using angular2.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace angular2.Persistence
@@ -10,5 +11,6 @@ namespace angular2.Persistence
         {
             
         }
+        public DbSet<Make> Makes{get;set;}
     }
 }
