@@ -11,8 +11,8 @@ using System;
 namespace angular2.Migrations
 {
     [DbContext(typeof(NgDbContext))]
-    [Migration("20180306034212_initial")]
-    partial class initial
+    [Migration("20180306060922_seedingData")]
+    partial class seedingData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,7 +26,9 @@ namespace angular2.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255);
 
                     b.HasKey("Id");
 
@@ -40,13 +42,15 @@ namespace angular2.Migrations
 
                     b.Property<int>("MakeId");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255);
 
                     b.HasKey("Id");
 
                     b.HasIndex("MakeId");
 
-                    b.ToTable("Model");
+                    b.ToTable("Models");
                 });
 
             modelBuilder.Entity("angular2.Models.Model", b =>
