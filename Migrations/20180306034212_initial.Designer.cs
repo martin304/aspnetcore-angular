@@ -11,7 +11,7 @@ using System;
 namespace angular2.Migrations
 {
     [DbContext(typeof(NgDbContext))]
-    [Migration("20180306033448_initial")]
+    [Migration("20180306034212_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
