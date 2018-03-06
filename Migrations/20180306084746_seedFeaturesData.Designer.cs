@@ -11,9 +11,10 @@ using System;
 namespace angular2.Migrations
 {
     [DbContext(typeof(NgDbContext))]
-    partial class NgDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180306084746_seedFeaturesData")]
+    partial class seedFeaturesData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
