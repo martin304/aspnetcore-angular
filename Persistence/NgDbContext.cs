@@ -8,6 +8,7 @@ namespace angular2.Persistence
     {
         public DbSet<Make> Makes{get;set;}
         public DbSet<Feature> Features{get;set;}
+        public DbSet<Vehicle> Vehicles{get;set;}
         public NgDbContext(DbContextOptions<NgDbContext> options)
         :base(options)
         {

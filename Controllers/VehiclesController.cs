@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using angular2.Controllers.Resources;
 using angular2.Models;
 using angular2.Persistence;
@@ -18,9 +20,12 @@ namespace angular2.Controllers
 
         }
         [HttpPost]
-        public IActionResult CreateVehicle([FromBody]VehicleResource vehicleResource)
+        public async Task<IActionResult> CreateVehicle([FromBody]VehicleResource vehicleResource)
         {
             var vehicle=mapper.Map<VehicleResource,Vehicle>(vehicleResource);
+            vehicle.LastUpdate=DateTime.Now;
+            context.Vehicles.Add(vehicle);
+          await  context.SaveChangesAsync();
             return Ok(vehicle);
         }
     }
