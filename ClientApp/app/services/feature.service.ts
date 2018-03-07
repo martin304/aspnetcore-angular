@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 export class FeatureService {
 
   constructor(private http:Http) { }
-  getFeature(){
-   return this.http.get("/api/features").subscribe(res=>res.json());
+  getFeatures(){
+   return this.http.get("/api/features").map(res=>res.json());
   }
 }
