@@ -20,8 +20,11 @@ export class VehicleFormComponent implements OnInit {
       this.makes=makes;
       console.log("Makes",this.makes);
     });
-   this.featureService.getFeatures().subscribe(features=>this.features=features);
-  }
+   this.featureService.getFeatures().subscribe(features=>{
+     this.features=features;
+     console.log("Features",this.features);
+    });
+   }
   onMakeChange(){
    var selectedMake=this.makes.find(m=>m.id==this.vehicle.make);
   this.models= selectedMake?selectedMake.models:[]
