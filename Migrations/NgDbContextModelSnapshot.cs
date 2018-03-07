@@ -90,7 +90,7 @@ namespace angular2.Migrations
 
                     b.HasIndex("ModelId");
 
-                    b.ToTable("Vehicle");
+                    b.ToTable("Vehicles");
                 });
 
             modelBuilder.Entity("angular2.Models.VehicleFeature", b =>
@@ -103,7 +103,7 @@ namespace angular2.Migrations
 
                     b.HasIndex("FeatureId");
 
-                    b.ToTable("VehicleFeature");
+                    b.ToTable("VehicleFeatures");
                 });
 
             modelBuilder.Entity("angular2.Models.Model", b =>

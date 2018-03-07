@@ -11,7 +11,7 @@ using System;
 namespace angular2.Migrations
 {
     [DbContext(typeof(NgDbContext))]
-    [Migration("20180307053752_vehicle")]
+    [Migration("20180307054821_vehicle")]
     partial class vehicle
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -91,7 +91,7 @@ namespace angular2.Migrations
 
                     b.HasIndex("ModelId");
 
-                    b.ToTable("Vehicle");
+                    b.ToTable("Vehicles");
                 });
 
             modelBuilder.Entity("angular2.Models.VehicleFeature", b =>
@@ -104,7 +104,7 @@ namespace angular2.Migrations
 
                     b.HasIndex("FeatureId");
 
-                    b.ToTable("VehicleFeature");
+                    b.ToTable("VehicleFeatures");
                 });
 
             modelBuilder.Entity("angular2.Models.Model", b =>
