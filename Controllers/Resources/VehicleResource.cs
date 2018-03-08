@@ -10,7 +10,7 @@ namespace angular2.Controllers.Resources
          public int Id { get; set; }
        
         public KeyValuePairResource Model { get; set; }
-        public MakeResource Make{get;set;}
+        public KeyValuePairResource Make{get;set;}
         public bool IsRegistered { get; set; }
 
         public ContactResource Contact{get;set;}
