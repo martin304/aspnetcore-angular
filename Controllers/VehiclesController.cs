@@ -25,7 +25,7 @@ namespace angular2.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-           
+
             var vehicle = mapper.Map<VehicleResource, Vehicle>(vehicleResource);
             vehicle.LastUpdate = DateTime.Now;
             context.Vehicles.Add(vehicle);
@@ -34,16 +34,24 @@ namespace angular2.Controllers
             return Ok(result);
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateVehicle(int id,[FromBody]VehicleResource vehicleResource)
+        public async Task<IActionResult> UpdateVehicle(int id, [FromBody]VehicleResource vehicleResource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-          var vehicle=await context.Vehicles.Include(v=>v.Features).SingleOrDefaultAsync(v=>v.Id==id);
-            mapper.Map<VehicleResource, Vehicle>(vehicleResource,vehicle);
+            var vehicle = await context.Vehicles.Include(v => v.Features).SingleOrDefaultAsync(v => v.Id == id);
+            mapper.Map<VehicleResource, Vehicle>(vehicleResource, vehicle);
             vehicle.LastUpdate = DateTime.Now;
             await context.SaveChangesAsync();
             var result = mapper.Map<Vehicle, VehicleResource>(vehicle);
             return Ok(result);
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteVehicle(int id)
+        {
+            var vehicle = await context.Vehicles.FindAsync(id);
+            context.Vehicles.Remove(vehicle);
+            await context.SaveChangesAsync();
+            return Ok(id);
         }
     }
 }
