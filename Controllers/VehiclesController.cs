@@ -20,6 +20,7 @@ namespace angular2.Controllers
             this.context = context;
 
         }
+       
         [HttpPost]
         public async Task<IActionResult> CreateVehicle([FromBody]VehicleResource vehicleResource)
         {
@@ -39,6 +40,8 @@ namespace angular2.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var vehicle = await context.Vehicles.Include(v => v.Features).SingleOrDefaultAsync(v => v.Id == id);
+             if (vehicle == null)
+                return NotFound();
             mapper.Map<VehicleResource, Vehicle>(vehicleResource, vehicle);
             vehicle.LastUpdate = DateTime.Now;
             await context.SaveChangesAsync();
@@ -49,6 +52,8 @@ namespace angular2.Controllers
         public async Task<IActionResult> DeleteVehicle(int id)
         {
             var vehicle = await context.Vehicles.FindAsync(id);
+            if (vehicle == null)
+                return NotFound();
             context.Vehicles.Remove(vehicle);
             await context.SaveChangesAsync();
             return Ok(id);
