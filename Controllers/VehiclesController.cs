@@ -44,7 +44,14 @@ namespace angular2.Controllers
             vehicle.LastUpdate = DateTime.Now;
             context.Vehicles.Add(vehicle);
             await context.SaveChangesAsync();
-            var result = mapper.Map<Vehicle, SaveVehicleResource>(vehicle);
+            await  context.Models.Include(m=>m.Make).SingleOrDefaultAsync(m=>m.Id==vehicle.ModelId);
+             vehicle=   await  context.Vehicles
+            .Include(v=>v.Features)
+            .ThenInclude(vf=>vf.Feature)
+            .Include(v=>v.Model)
+            .ThenInclude(m=>m.Make)
+            .SingleOrDefaultAsync(v=>v.Id==vehicle.Id);
+            var result = mapper.Map<Vehicle, VehicleResource>(vehicle);
             return Ok(result);
         }
         [HttpPut("{id}")]
