@@ -4,7 +4,7 @@ using angular2.Models;
 
 namespace angular2.Controllers.Resources
 {
-    public class VehicleResource
+    public class SaveVehicleResource
     {
         public int Id { get; set; }
         public int ModelId { get; set; }
@@ -14,7 +14,7 @@ namespace angular2.Controllers.Resources
 
         public ContactResource Contact{get;set;}
         public ICollection<int> Features { get; set; }
-        public VehicleResource()
+        public SaveVehicleResource()
         {
             Features = new Collection<int>();
         }
