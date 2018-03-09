@@ -18,7 +18,8 @@ namespace angular2.Mapping
                .ForMember(vr=>vr.Features,opt=>opt.MapFrom(v=>v.Features.Select(vf=>vf.FeatureId)));
              CreateMap<Vehicle,VehicleResource>()
                .ForMember(vr=>vr.Contact,opt =>opt.MapFrom(v=>new ContactResource{Name=v.contactName,Email=v.contactEmail,Phone=v.contactPhone}))
-               .ForMember(vr=>vr.Features,opt=>opt.MapFrom(v=>v.Features.Select(vf=>new FeatureResource{Id=vf.Feature.Id,Name=vf.Feature.Name})));
+               .ForMember(vr=>vr.Features,opt=>opt.MapFrom(v=>v.Features.Select(vf=>new FeatureResource{Id=vf.Feature.Id,Name=vf.Feature.Name})))
+               .ForMember(vr=>vr.Make,opt=>opt.MapFrom(v=>v.Model.Make));
             //API Resource to Domain
             CreateMap<SaveVehicleResource,Vehicle>()
               .ForMember(v=>v.Id,opt=>opt.Ignore())

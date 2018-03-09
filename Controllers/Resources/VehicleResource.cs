@@ -9,6 +9,7 @@ namespace angular2.Controllers.Resources
         public int Id { get; set; }
        
         public ModelResource Model { get; set; }
+        public MakeResource Make{get;set;}
         public bool IsRegistered { get; set; }
 
        

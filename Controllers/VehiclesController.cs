@@ -26,6 +26,8 @@ namespace angular2.Controllers
             var  vehicle=   await  context.Vehicles
             .Include(v=>v.Features)
             .ThenInclude(vf=>vf.Feature)
+            .Include(v=>v.Model)
+            .ThenInclude(m=>m.Make)
             .SingleOrDefaultAsync(v=>v.Id==id);
             if(vehicle==null)
             return NotFound();
