@@ -11,7 +11,9 @@ import { VehicleService } from '../../services/vehicle.service';
 export class VehicleFormComponent implements OnInit {
   makes:any[];
   models:any[];
-  vehicle:any={};
+  vehicle:any={
+    features:[]
+  };
   features:any[];
   constructor(private vehicleService:VehicleService) { }
 
@@ -26,8 +28,17 @@ export class VehicleFormComponent implements OnInit {
     });
   }
   onMakeChange(){
-   var selectedMake=this.makes.find(m=>m.id==this.vehicle.make);
+   var selectedMake=this.makes.find(m=>m.id==this.vehicle.makeId);
   this.models= selectedMake?selectedMake.models:[]
      console.log("sm",selectedMake);
+     delete this.vehicle.modelId;
+  }
+  onFeatureToggle(featureId:any,$event:any){
+    if($event.target.checked)
+    this.vehicle.features.push(featureId);
+    else{
+      var index=this.vehicle.features.indexOf(featureId);
+      this.vehicle.features.splice(index,1);
+    }
   }
 }
