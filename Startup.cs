@@ -26,6 +26,7 @@ namespace angular2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IVehicleRepository,VehicleRepository>();
+            services.AddScoped<IUnitOfWork,UnitOfWork>();
             services.AddAutoMapper();
             services.AddDbContext<NgDbContext>(options=>options.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddMvc();
